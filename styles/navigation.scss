@@ -6,7 +6,16 @@
 
 @media (max-width: 640px) {
   .header {
-    @apply py-1;
+    @apply py-2 px-4 flex-row justify-between items-center;
+    min-height: 64px;
+  }
+  .header > div {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .header .logo {
+    margin-right: 0.5rem;
   }
   /* .navbar-brand {
     width: 180px !important;

@@ -84,6 +84,15 @@ const Header = () => {
     };
   }, [navOpen]);
 
+  // Thêm hàm chuyển tên dịch vụ sang slug url-friendly
+  function toSlug(str) {
+    return str
+      .normalize('NFD').replace(/\p{Diacritic}/gu, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
   return (
     <header className="header flex justify-center items-center transition-all duration-300" ref={navRef}>
       <div className="flex items-center justify-center gap-6 w-full" style={{minWidth:0, padding:0, margin:0}}>
@@ -255,9 +264,9 @@ const Header = () => {
           >
             <div className="p-6 h-full overflow-y-auto">
               <div className="flex justify-between items-center mb-8">
-                <Link href="/" onClick={() => setNavOpen(false)}>
+                <div onClick={() => setNavOpen(false)} style={{cursor:'pointer'}}>
                   <Logo />
-                </Link>
+                </div>
                 <button
                   onClick={() => setNavOpen(false)}
                   className="p-2 text-gray-500 hover:text-gray-700"
@@ -287,7 +296,7 @@ const Header = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         </button>
-                        <div className={`overflow-hidden transition-all duration-300 ${servicesOpen ? 'max-h-96' : 'max-h-0'}`}>
+                        <div className={`overflow-hidden transition-all duration-300 ${servicesOpen ? 'max-h-[80vh] overflow-y-auto' : 'max-h-0'}`}>
                           <div className="pl-4 space-y-2">
                             {services.map((service, i) => (
                               <div key={i} className="py-2">
@@ -298,7 +307,7 @@ const Header = () => {
                                   {service.services.map((sv, j) => (
                                     <li key={j}>
                                       <Link
-                                        href={`/services/${sv.toLowerCase().replace(/\s+/g, '-')}`}
+                                        href={`/services/${toSlug(sv)}`}
                                         className="block py-1 text-gray-600 hover:text-primary transition-colors text-sm"
                                         onClick={() => setNavOpen(false)}
                                       >

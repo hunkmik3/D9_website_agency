@@ -4,11 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Autoplay } from "swiper";
+import SwiperCore, { Pagination, Autoplay, Grid } from "swiper";
 import "swiper/swiper.min.css";
 import "swiper/css/pagination";
+import "swiper/css/grid";
 
-SwiperCore.use([Pagination, Autoplay]);
+SwiperCore.use([Pagination, Autoplay, Grid]);
 
 const FeaturedProjects = ({ featured_projects }) => {
   if (!featured_projects) return null;
@@ -72,6 +73,13 @@ const FeaturedProjects = ({ featured_projects }) => {
   const mobileSlides = [];
   for (let i = 0; i < filteredProjects.length; i += PROJECTS_PER_MOBILE_SLIDE) {
     mobileSlides.push(filteredProjects.slice(i, i + PROJECTS_PER_MOBILE_SLIDE));
+  }
+
+  // Chia dự án thành các nhóm 12 (3 hàng x 4 cột) cho desktop
+  const PROJECTS_PER_SLIDE = 12;
+  const projectSlides = [];
+  for (let i = 0; i < filteredProjects.length; i += PROJECTS_PER_SLIDE) {
+    projectSlides.push(filteredProjects.slice(i, i + PROJECTS_PER_SLIDE));
   }
 
   return (
@@ -143,31 +151,57 @@ const FeaturedProjects = ({ featured_projects }) => {
           </Swiper>
         </div>
 
-        {/* Desktop: Grid giữ nguyên, không dùng Slider */}
-        <div className="hidden md:block">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredProjects.map((project, idx) => (
-              <div
-                key={idx}
-                className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
-              >
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  className="w-full h-56 object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Overlay hover: hiện tên dự án */}
-                <a
-                  href={`/projects/${project.slug}`}
-                  className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
-                >
-                  <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg text-center px-4">
-                    {project.name}
-                  </span>
-                </a>
-              </div>
-            ))}
-          </div>
+        {/* Desktop & Mobile: Carousel 3x4 */}
+        <div className="w-full hidden md:block">
+          <Swiper
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            style={{ paddingBottom: 32, paddingLeft: 16, paddingRight: 16 }}
+          >
+            {projectSlides.map((group, idx) => {
+              // Chèn placeholder vào cuối từng hàng nếu thiếu
+              const rows = 3;
+              const cols = 4;
+              const items = [];
+              for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                  const i = r * cols + c;
+                  if (i < group.length) {
+                    const project = group[i];
+                    items.push(
+                      <div key={i} className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer mb-8">
+                        <img
+                          src={project.image}
+                          alt={project.name}
+                          className="w-full h-40 md:h-56 object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        />
+                        {/* Overlay hover: hiện tên dự án */}
+                        <a
+                          href={`/projects/${project.slug}`}
+                          className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                        >
+                          <span className="text-white text-base md:text-xl font-bold drop-shadow-lg text-center px-2 md:px-4">
+                            {project.name}
+                          </span>
+                        </a>
+                      </div>
+                    );
+                  } else {
+                    items.push(
+                      <div key={`ph-${r}-${c}`} className="mb-8" style={{background:'transparent', boxShadow:'none', minHeight:'0', minWidth:'0'}}></div>
+                    );
+                  }
+                }
+              }
+              return (
+                <SwiperSlide key={idx}>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {items}
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
 
         {/* CTA Button */}

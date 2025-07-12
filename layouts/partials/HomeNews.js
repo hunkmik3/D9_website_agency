@@ -22,6 +22,12 @@ const HomeNews = ({ posts = [] }) => {
           ))}
         </div>
       </div>
+      {/* Nút Tìm hiểu thêm */}
+      <div className="flex justify-center mt-8">
+        <Link href="/blogs" className="btn btn-outline-primary text-base px-6 py-2 rounded-full font-semibold">
+          Tìm hiểu thêm
+        </Link>
+      </div>
     </section>
   );
 };

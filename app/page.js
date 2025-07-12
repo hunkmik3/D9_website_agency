@@ -10,13 +10,20 @@ import FeaturedProjects from "../layouts/partials/FeaturedProjects";
 import ProfileSection from "../layouts/partials/ProfileSection";
 import Testimonials from "../layouts/partials/Testimonials";
 import HomeNews from "../layouts/partials/HomeNews";
-import { getListPage } from "../lib/contentParser";
+import { getListPage, getSinglePage } from "../lib/contentParser";
 
 const Home = async () => {
   const homePage = await getListPage("content/_index.md");
   const { frontmatter } = homePage;
   const { banner, clients, new_services, feature, featured_projects, profile_section, call_to_action } = frontmatter;
   const { title } = config.site;
+
+  // Lấy danh sách bài viết mới nhất
+  let posts = [];
+  try {
+    posts = getSinglePage("content/blogs");
+    posts.sort((a, b) => new Date(b?.frontmatter?.date || 0) - new Date(a?.frontmatter?.date || 0));
+  } catch {}
 
   return (
     <>
@@ -41,7 +48,7 @@ const Home = async () => {
       <FeaturedProjects featured_projects={featured_projects} />
 
       {/* News */}
-      <HomeNews />
+      <HomeNews posts={posts} />
 
       {/* Profile Section */}
       <ProfileSection profile_section={profile_section} />

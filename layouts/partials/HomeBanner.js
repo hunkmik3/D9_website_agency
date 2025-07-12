@@ -72,9 +72,7 @@ const HomeBanner = ({ banner }) => {
               {images.map((_, idx) => (
                 <button
                   key={idx}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    idx === currentImage ? 'bg-white' : 'bg-white/50'
-                  }`}
+                  className={`home-banner-dot ${idx === currentImage ? 'bg-white' : 'bg-white/50'}`}
                   onClick={() => setCurrentImage(idx)}
                 />
               ))}
