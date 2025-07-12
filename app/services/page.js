@@ -1,8 +1,9 @@
 "use client";
 
+import config from "../../config/config.json";
+import SeoMeta from "../../layouts/SeoMeta";
 import Image from "next/image";
 import Link from "next/link";
-import SeoMeta from "@layouts/SeoMeta";
 
 const GROUP_IMAGES = {
   "Digital Marketing": "/images/service-slide-1.png",

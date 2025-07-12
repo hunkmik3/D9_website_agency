@@ -1,8 +1,8 @@
-import Pagination from "@components/Pagination";
-import config from "@config/config.json";
-import SeoMeta from "@layouts/SeoMeta";
-import { getListPage, getSinglePage } from "@lib/contentParser";
-import { markdownify } from "@lib/utils/textConverter";
+import Pagination from "../../../../layouts/components/Pagination";
+import config from "../../../../config/config.json";
+import SeoMeta from "../../../../layouts/SeoMeta";
+import { getListPage, getSinglePage } from "../../../../lib/contentParser";
+import { markdownify } from "../../../../lib/utils/textConverter";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";

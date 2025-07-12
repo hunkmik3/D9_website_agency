@@ -1,25 +1,30 @@
-import shortcodes from "@layouts/shortcodes/all";
-import "highlight.js/styles/atom-one-dark.css";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
+"use client";
 
-const MDXContent = ({ content }) => {
-  const mdxOptions = {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
-  };
+import shortcodes from '../../layouts/shortcodes/all.js';
 
-  return (
-    <>
-      {/* @ts-ignore */}
-      <MDXRemote
-        source={content}
-        components={shortcodes}
-        options={{ mdxOptions }}
+const MDXContent = ({ source }) => {
+  try {
+    if (!source) {
+      return <div className="text-gray-500">Nội dung không khả dụng</div>;
+    }
+    
+    // Render MDX content trực tiếp bằng dangerouslySetInnerHTML
+    // Đây là cách đơn giản nhất để tránh lỗi fs module
+    return (
+      <div 
+        className="mdx-content"
+        dangerouslySetInnerHTML={{ __html: source }}
       />
-    </>
-  );
+    );
+  } catch (error) {
+    console.error('MDX rendering error:', error);
+    return (
+      <div className="text-red-500">
+        <p>Lỗi hiển thị nội dung</p>
+        <p className="text-sm">{error.message}</p>
+      </div>
+    );
+  }
 };
 
 export default MDXContent;

@@ -1,36 +1,36 @@
-import config from "@config/config.json";
+import config from "../../config/config.json";
 import Image from "next/image";
 import Link from "next/link";
 
 const Logo = ({ src }) => {
-  // destructuring items from config object
-  const { base_url, logo, logo_width, logo_height, logo_text, title } =
-    config.site;
+  const { base_url, logo, logo_text, title } = config.site;
 
   return (
     <Link
       href={base_url}
-      className="navbar-brand flex items-center py-0 md:py-1"
-      style={{
-        height: logo_height.replace("px", "") + "px",
-        width: logo_width.replace("px", "") + "px",
-        minHeight: logo_height.replace("px", "") + "px",
-        minWidth: logo_width.replace("px", "") + "px",
-      }}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '48px', width: 'auto', minHeight: 0, minWidth: 0, padding: 0, margin: 0 }}
     >
       {src || logo ? (
         <Image
-          width={logo_width.replace("px", "")}
-          height={logo_height.replace("px", "")}
           src={src ? src : logo}
           alt={title}
           priority
-          style={{ objectFit: "contain", height: "100%", width: "100%", width: 'auto', height: 'auto' }}
+          width={120}
+          height={48}
+          style={{
+            objectFit: "contain",
+            height: "48px",
+            width: "auto",
+            maxWidth: "120px",
+            display: "block",
+            padding: 0,
+            margin: 0
+          }}
         />
       ) : logo_text ? (
-        <span className="text-xl font-bold">{logo_text}</span>
+        <span style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{logo_text}</span>
       ) : (
-        <span className="text-xl font-bold">{title}</span>
+        <span style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>{title}</span>
       )}
     </Link>
   );

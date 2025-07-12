@@ -1,7 +1,7 @@
 "use client";
 
-import { markdownify } from "@lib/utils/textConverter";
-import MDXContent from "app/helper/MDXContent";
+import { markdownify } from "../lib/utils/textConverter";
+import MDXContent from "../app/helper/MDXContent";
 import Image from "next/image";
 import SeoMeta from "./SeoMeta";
 import { FaCalendarAlt, FaClock, FaUser, FaShare, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaCopy, FaCheck } from "react-icons/fa";
@@ -9,6 +9,21 @@ import Link from "next/link";
 import { useState } from "react";
 
 const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
+  // Kiểm tra và đảm bảo props tồn tại
+  if (!frontmatter || !content) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy bài viết</h1>
+          <p className="text-gray-600 mb-6">Bài viết bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+          <Link href="/blogs" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            Quay lại trang blog
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   let { description, title, image, date, category, tags } = frontmatter;
   description = description ? description : content.slice(0, 120);
 
@@ -20,26 +35,36 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
   const shareText = `${title} - ${description}`;
 
   const shareToFacebook = () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
   };
 
   const shareToTwitter = () => {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
   };
 
   const shareToLinkedIn = () => {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
   };
 
   const shareToWhatsApp = () => {
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank');
+    }
   };
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
     } catch (error) {
       console.error('Failed to copy:', error);
     }
@@ -95,11 +120,11 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
                 <div className="flex items-center gap-2">
                   <FaCalendarAlt className="w-4 h-4" />
                   <span>
-                    {new Date(date).toLocaleDateString('vi-VN', {
+                    {date ? new Date(date).toLocaleDateString('vi-VN', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
-                    })}
+                    }) : 'Không có ngày'}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -150,7 +175,7 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
 
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none">
-                  <MDXContent content={content} />
+                  <MDXContent source={content} />
                 </div>
 
                 {/* Enhanced Share Section */}
@@ -296,11 +321,11 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
                                 </Link>
                               </h4>
                               <p className="text-xs text-gray-500">
-                                {new Date(post.frontmatter.date).toLocaleDateString('vi-VN', {
+                                {post.frontmatter.date ? new Date(post.frontmatter.date).toLocaleDateString('vi-VN', {
                                   year: 'numeric',
                                   month: 'short',
                                   day: 'numeric'
-                                })}
+                                }) : 'Không có ngày'}
                               </p>
                             </div>
                           </div>

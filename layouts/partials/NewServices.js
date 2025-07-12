@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/swiper.min.css";
 import "swiper/css/pagination";
-import servicesConfig from "@config/services.json";
+import servicesConfig from "../../config/services.json";
 
 SwiperCore.use([Pagination, Autoplay]);
 

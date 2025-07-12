@@ -1,5 +1,8 @@
-import React from "react";
-import SeoMeta from "@layouts/SeoMeta";
+import config from "../../config/config.json";
+import SeoMeta from "../../layouts/SeoMeta";
+import { getListPage } from "../../lib/contentParser";
+import Image from "next/image";
+import Link from "next/link";
 
 const TOTAL_PAGES = 25;
 

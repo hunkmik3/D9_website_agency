@@ -1,11 +1,11 @@
-import config from "@config/config.json";
-import SeoMeta from "@layouts/SeoMeta";
-import { getListPage, getSinglePage } from "@lib/contentParser";
-import { getAllCategories } from "@lib/utils/textConverter";
+import config from "../../../../config/config.json";
+import SeoMeta from "../../../../layouts/SeoMeta";
+import { getListPage, getSinglePage } from "../../../../lib/contentParser";
+import { getAllCategories } from "../../../../lib/utils/textConverter";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
-import Pagination from "@components/Pagination";
+import Pagination from "../../../../layouts/components/Pagination";
 import { redirect, notFound } from "next/navigation";
 import removeAccents from "remove-accents";
 import dynamic from "next/dynamic";
@@ -63,4 +63,18 @@ const CategoryPage = async ({ params }) => {
 
 const CategoryListClient = dynamic(() => import("./CategoryListClient"), { ssr: false });
 
-export default CategoryPage; 
+export default CategoryPage;
+
+// Thêm generateStaticParams function
+export async function generateStaticParams() {
+  try {
+    const posts = await getSinglePage(`content/${blog_folder}`);
+    const categories = getAllCategories(posts);
+    return categories.map((category) => ({
+      category: category,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for categories:', error);
+    return [];
+  }
+} 

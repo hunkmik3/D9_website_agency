@@ -1,8 +1,8 @@
-import Social from "@components/Social";
-import config from "@config/config.json";
-import menu from "@config/menu.json";
-import social from "@config/social.json";
-import { markdownify } from "@lib/utils/textConverter";
+import Social from "../components/Social";
+import config from "../../config/config.json";
+import menu from "../../config/menu.json";
+import social from "../../config/social.json";
+import { markdownify } from "../../lib/utils/textConverter";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="py-8 px-2 container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           {/* Logo + mô tả */}
           <div className="flex-1 flex flex-col items-center md:items-start mb-8 md:mb-0">
-            <Image src={config.site.logo} width={100} height={100} alt="logo" className="mb-2" />
+            <Image src={config.site.logo} width={80} height={40} alt="logo" className="mb-2" style={{objectFit:'contain',height:'40px',width:'auto',maxWidth:'80px'}} />
             <span className="text-2xl font-bold tracking-wide mb-2 text-center md:text-left">D9 MEDIA AGENCY</span>
             <p className="max-w-xs text-center md:text-left text-sm opacity-90 mb-4">{footer_content}</p>
           </div>

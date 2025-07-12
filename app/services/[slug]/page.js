@@ -1,8 +1,4 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
 import Link from "next/link";
 
 const SERVICE_DETAIL = {
@@ -577,19 +573,24 @@ function getRelatedProjects(slug) {
   return related.slice(0, 3);
 }
 
-export default function ServiceDetailPage() {
-  const { slug } = useParams();
-  const [activeTab, setActiveTab] = useState('overview');
-  const data = SERVICE_DETAIL[slug] || {
-    title: "Dịch vụ đang cập nhật",
-    subtitle: "Thông tin dịch vụ sẽ được cập nhật sớm",
-    bannerImage: "/images/banner/banner-1.png",
-    serviceImage: "/images/services/service-1.jpg",
-    what: "Thông tin dịch vụ sẽ được cập nhật sớm.",
-    benefits: [],
-    why: [],
-    process: []
-  };
+export default function ServiceDetailPage({ params }) {
+  const slug = params.slug;
+  const serviceData = SERVICE_DETAIL[slug];
+
+  if (!serviceData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy dịch vụ</h1>
+          <p className="text-gray-600 mb-6">Dịch vụ bạn đang tìm kiếm không tồn tại.</p>
+          <Link href="/services" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            Quay lại trang dịch vụ
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const color = COLOR_MAP[slug] || COLOR_MAP["default"];
 
   return (
@@ -600,10 +601,10 @@ export default function ServiceDetailPage() {
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
           <div className="max-w-4xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              {data.title}
+              {serviceData.title}
             </h1>
             <p className="text-xl text-white/90 mb-8 max-w-2xl">
-              {data.subtitle}
+              {serviceData.subtitle}
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
@@ -612,137 +613,92 @@ export default function ServiceDetailPage() {
               </div>
               <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
                 <p className="text-white text-sm font-medium">GIẢI PHÁP</p>
-                <p className="text-white font-semibold">{data.title}</p>
+                <p className="text-white font-semibold">{serviceData.title}</p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Navigation Tabs */}
-      <section className="border-b border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="flex space-x-4 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-transparent">
-            <button
-              onClick={() => setActiveTab('overview')}
-              className={`py-4 px-4 min-w-max border-b-2 font-medium text-sm whitespace-nowrap transition-colors duration-200 ${
-                activeTab === 'overview'
-                  ? 'border-blue-600 text-blue-600 bg-blue-50' : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Tổng quan
-            </button>
-            <button
-              onClick={() => setActiveTab('challenge')}
-              className={`py-4 px-4 min-w-max border-b-2 font-medium text-sm whitespace-nowrap transition-colors duration-200 ${
-                activeTab === 'challenge'
-                  ? 'border-blue-600 text-blue-600 bg-blue-50' : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Thách thức
-            </button>
-            <button
-              onClick={() => setActiveTab('solution')}
-              className={`py-4 px-4 min-w-max border-b-2 font-medium text-sm whitespace-nowrap transition-colors duration-200 ${
-                activeTab === 'solution'
-                  ? 'border-blue-600 text-blue-600 bg-blue-50' : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Giải pháp
-            </button>
-            <button
-              onClick={() => setActiveTab('results')}
-              className={`py-4 px-4 min-w-max border-b-2 font-medium text-sm whitespace-nowrap transition-colors duration-200 ${
-                activeTab === 'results'
-                  ? 'border-blue-600 text-blue-600 bg-blue-50' : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Kết quả
-            </button>
           </div>
         </div>
       </section>
 
       {/* Content Sections */}
       <div className="container mx-auto px-4 py-16">
-        {activeTab === 'overview' && (
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">VỀ DỊCH VỤ {data.title.toUpperCase()}</h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-600 mb-6">{data.what}</p>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">VỀ DỊCH VỤ {serviceData.title.toUpperCase()}</h2>
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 mb-6">{serviceData.what}</p>
+          </div>
+          <div className="flex justify-center mt-8">
+            <Image src={serviceData.serviceImage} alt={serviceData.title} width={480} height={320} className="rounded-2xl shadow-xl border border-blue-100" />
+          </div>
+          
+          {/* Lợi ích */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">LỢI ÍCH KHI SỬ DỤNG DỊCH VỤ</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {serviceData.benefits && serviceData.benefits.map((benefit, idx) => (
+                <div key={idx} className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                  <h4 className="text-lg font-semibold text-blue-800 mb-2">{benefit.title}</h4>
+                  <p className="text-blue-700">{benefit.desc}</p>
+                </div>
+              ))}
             </div>
-            <div className="flex justify-center mt-8">
-              <Image src={data.serviceImage} alt={data.title} width={480} height={320} className="rounded-2xl shadow-xl border border-blue-100" />
+          </div>
+
+          {/* Tại sao chọn chúng tôi */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">TẠI SAO CHỌN CHÚNG TÔI</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {serviceData.why && serviceData.why.map((reason, idx) => (
+                <div key={idx} className="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                  <h4 className="text-lg font-semibold text-green-800 mb-2">{reason.title}</h4>
+                  <p className="text-green-700">{reason.desc}</p>
+                </div>
+              ))}
             </div>
-            {/* Dự án tiêu biểu liên quan */}
-            <div className="mt-16">
-              <h3 className="text-2xl font-bold text-blue-700 mb-6 text-center">DỰ ÁN TIÊU BIỂU LIÊN QUAN</h3>
-              <div className="grid md:grid-cols-3 gap-8">
-                {getRelatedProjects(slug).map((project, idx) => (
-                  <div key={project.slug} className="rounded-2xl shadow-lg bg-white overflow-hidden group hover:shadow-2xl transition-all border border-blue-100 flex flex-col">
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <Image src={project.image} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition">{project.name}</h4>
-                        <p className="text-sm text-gray-600 mb-4">{getProjectAchievement(project.type)}</p>
-                      </div>
-                      <Link href={`/projects/${project.slug}`} className="inline-block mt-auto px-5 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold text-sm shadow hover:from-blue-700 hover:to-indigo-700 transition-all">Xem chi tiết</Link>
-                    </div>
+          </div>
+
+          {/* Quy trình */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">QUY TRÌNH THỰC HIỆN</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {serviceData.process && serviceData.process.map((step, idx) => (
+                <div key={idx} className="bg-gradient-to-br from-blue-500 to-indigo-500 p-6 rounded-lg text-white text-center">
+                  <div className="text-3xl font-bold mb-2">{step.step}</div>
+                  <h4 className="text-lg font-semibold mb-2">{step.title}</h4>
+                  <p className="text-sm opacity-90">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dự án tiêu biểu liên quan */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-blue-700 mb-6 text-center">DỰ ÁN TIÊU BIỂU LIÊN QUAN</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {getRelatedProjects(slug).map((project, idx) => (
+                <div key={project.slug} className="rounded-2xl shadow-lg bg-white overflow-hidden group hover:shadow-2xl transition-all border border-blue-100 flex flex-col">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image src={project.image} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-        {activeTab === 'challenge' && (
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">THÁCH THỨC</h2>
-            <div className="space-y-6">
-              {data.benefits && data.benefits.map((b, idx) => (
-                <div key={idx} className="bg-red-50 border-l-4 border-red-400 p-6">
-                  <h3 className="text-xl font-semibold text-red-800 mb-2">{idx + 1}. {b.title}</h3>
-                  <p className="text-red-700">{b.desc}</p>
+                  <div className="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition">{project.name}</h4>
+                      <p className="text-sm text-gray-600 mb-4">{getProjectAchievement(project.type)}</p>
+                    </div>
+                    <Link href={`/projects/${project.slug}`} className="inline-block mt-auto px-5 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold text-sm shadow hover:from-blue-700 hover:to-indigo-700 transition-all">Xem chi tiết</Link>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        )}
-        {activeTab === 'solution' && (
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">GIẢI PHÁP TỪ CHÚNG TÔI</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {data.why && data.why.map((w, idx) => (
-                <div key={idx} className="bg-green-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold text-green-800 mb-3">{w.title}</h3>
-                  <p className="text-green-700">{w.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {activeTab === 'results' && (
-          <div className="max-w-4xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">KẾT QUẢ ĐẠT ĐƯỢC</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {data.process && data.process.map((p, idx) => (
-                <div key={idx} className="text-center p-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg text-white">
-                  <div className="text-4xl font-bold mb-2">{p.step}</div>
-                  <div className="text-lg">{p.title}</div>
-                  <p className="text-sm mt-2 opacity-90">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* CTA Section */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            SẴN SÀNG SỞ HỮU DỊCH VỤ {data.title.toUpperCase()}?
+            SẴN SÀNG SỞ HỮU DỊCH VỤ {serviceData.title.toUpperCase()}?
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Hãy để chúng tôi giúp bạn phát triển thương hiệu và tăng trưởng doanh nghiệp vượt trội
@@ -765,4 +721,12 @@ export default function ServiceDetailPage() {
       </section>
     </div>
   );
+}
+
+// Thêm generateStaticParams function
+export function generateStaticParams() {
+  const slugs = Object.keys(SERVICE_DETAIL);
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
 }

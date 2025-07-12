@@ -1,12 +1,13 @@
-import config from "@config/config.json";
-import theme from "@config/theme.json";
-import TwSizeIndicator from "@layouts/components/TwSizeIndicator";
-import Footer from "@layouts/partials/Footer";
-import Header from "@layouts/partials/Header";
-import Providers from "@layouts/partials/Providers";
-import BackToTop from "@layouts/components/BackToTop";
-import Analytics from "@layouts/components/Analytics";
-import servicesData from "@config/services.json";
+import config from "../config/config.json";
+import theme from "../config/theme.json";
+import TwSizeIndicator from "../layouts/components/TwSizeIndicator";
+import Footer from "../layouts/partials/Footer";
+import Header from "../layouts/partials/Header";
+import Providers from "../layouts/partials/Providers";
+import BackToTop from "../layouts/components/BackToTop";
+import Analytics from "../layouts/components/Analytics";
+import servicesData from "../config/services.json";
+import CustomMDXProvider from "./helper/MDXProvider";
 import "../styles/style.scss";
 
 export const metadata = {
@@ -120,7 +121,9 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <TwSizeIndicator />
         <Header services={servicesData} />
-        <Providers>{children}</Providers>
+        <CustomMDXProvider>
+          <Providers>{children}</Providers>
+        </CustomMDXProvider>
         <Footer />
         <BackToTop />
         <Analytics />

@@ -1,6 +1,6 @@
 "use client";
-import { markdownify } from "@lib/utils/textConverter";
 import Image from "next/image";
+import { markdownify } from "../../lib/utils/textConverter";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/swiper.min.css";

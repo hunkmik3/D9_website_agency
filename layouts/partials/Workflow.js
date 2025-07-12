@@ -1,4 +1,5 @@
-import { markdownify } from "@lib/utils/textConverter";
+"use client";
+import { markdownify } from "../../lib/utils/textConverter";
 import Image from "next/image";
 
 const Workflow = ({ workflow }) => {

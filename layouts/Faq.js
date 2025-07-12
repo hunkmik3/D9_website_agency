@@ -1,4 +1,8 @@
-import { markdownify } from "@lib/utils/textConverter";
+"use client";
+
+import { markdownify } from "../lib/utils/textConverter";
+import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 function Faq({ data }) {
   const { frontmatter } = data;

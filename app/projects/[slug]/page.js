@@ -188,4 +188,12 @@ export default function ProjectDetailPage({ params }) {
       </div>
     </div>
   );
+}
+
+// Thêm generateStaticParams function
+export function generateStaticParams() {
+  const slugs = Object.keys(PROJECTS);
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
 } 

@@ -1,5 +1,6 @@
 "use client";
-import { markdownify } from "@lib/utils/textConverter";
+import { markdownify } from "../../lib/utils/textConverter";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Marquee from "./Marquee";

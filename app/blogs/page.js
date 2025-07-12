@@ -1,6 +1,6 @@
-import config from "@config/config.json";
-import SeoMeta from "@layouts/SeoMeta";
-import { getListPage, getSinglePage } from "@lib/contentParser";
+import config from "../../config/config.json";
+import SeoMeta from "../../layouts/SeoMeta";
+import { getListPage, getSinglePage } from "../../lib/contentParser";
 import BlogContent from "./BlogContent";
 
 const { blog_folder } = config.settings;

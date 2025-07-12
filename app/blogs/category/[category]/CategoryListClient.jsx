@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCalendarAlt } from "react-icons/fa";
-import config from "@config/config.json";
+import config from "../../../../config/config.json";
 
 const { blog_folder } = config.settings;
 

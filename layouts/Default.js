@@ -1,5 +1,7 @@
-import { markdownify } from "@lib/utils/textConverter";
+"use client";
+import { markdownify } from "../lib/utils/textConverter";
 import MDXContent from "app/helper/MDXContent";
+import Image from "next/image";
 
 const Default = ({ data }) => {
   const { frontmatter, content } = data;

@@ -1,11 +1,11 @@
-import config from "@config/config.json";
-import SeoMeta from "@layouts/SeoMeta";
-import { getListPage, getSinglePage } from "@lib/contentParser";
-import { getAllCategories } from "@lib/utils/textConverter";
+import config from "../../../../../config/config.json";
+import SeoMeta from "../../../../../layouts/SeoMeta";
+import { getListPage, getSinglePage } from "../../../../../lib/contentParser";
+import { getAllCategories } from "../../../../../lib/utils/textConverter";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
-import Pagination from "@components/Pagination";
+import Pagination from "../../../../../layouts/components/Pagination";
 import removeAccents from "remove-accents";
 
 const { blog_folder, pagination } = config.settings;
@@ -112,4 +112,32 @@ const CategoryPage = async ({ params }) => {
   );
 };
 
-export default CategoryPage; 
+export default CategoryPage;
+
+// Thêm generateStaticParams function
+export async function generateStaticParams() {
+  try {
+    const posts = await getSinglePage(`content/${blog_folder}`);
+    const categories = getAllCategories(posts);
+    const paths = [];
+    
+    for (const category of categories) {
+      const categoryPosts = posts.filter((post) => 
+        normalize(post.frontmatter.category) === normalize(category)
+      );
+      const totalPages = Math.ceil(categoryPosts.length / pagination);
+      
+      for (let page = 1; page <= totalPages; page++) {
+        paths.push({
+          category: category,
+          page: page.toString(),
+        });
+      }
+    }
+    
+    return paths;
+  } catch (error) {
+    console.error('Error generating static params for category pages:', error);
+    return [];
+  }
+} 

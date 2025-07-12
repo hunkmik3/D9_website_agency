@@ -1,15 +1,15 @@
-import config from "@config/config.json";
-import Cta from "@layouts/components/Cta";
-import SeoMeta from "@layouts/SeoMeta";
+import config from "../config/config.json";
+import Cta from "../layouts/components/Cta";
+import SeoMeta from "../layouts/SeoMeta";
 
-import HomeBanner from "@layouts/partials/HomeBanner";
-import Clients from "@layouts/partials/Clients";
-import NewServices from "@layouts/partials/NewServices";
-import HomeFeatures from "@layouts/partials/HomeFeatures";
-import FeaturedProjects from "@layouts/partials/FeaturedProjects";
-import ProfileSection from "@layouts/partials/ProfileSection";
-import Testimonials from "@layouts/partials/Testimonials";
-import HomeNews from "@layouts/partials/HomeNews";
+import HomeBanner from "../layouts/partials/HomeBanner";
+import Clients from "../layouts/partials/Clients";
+import NewServices from "../layouts/partials/NewServices";
+import HomeFeatures from "../layouts/partials/HomeFeatures";
+import FeaturedProjects from "../layouts/partials/FeaturedProjects";
+import ProfileSection from "../layouts/partials/ProfileSection";
+import Testimonials from "../layouts/partials/Testimonials";
+import HomeNews from "../layouts/partials/HomeNews";
 import { getListPage } from "../lib/contentParser";
 
 const Home = async () => {
