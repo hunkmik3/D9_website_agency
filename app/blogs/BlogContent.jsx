@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCalendarAlt, FaClock, FaSearch, FaFilter, FaTimes } from "react-icons/fa";
+import { markdownify } from "../../lib/utils/textConverter";
 
 const BlogContent = ({ posts }) => {
   // Lấy danh sách category từ posts (an toàn)
@@ -189,9 +190,7 @@ const BlogContent = ({ posts }) => {
                     </Link>
                   </h3>
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 line-clamp-3 text-sm md:text-base">
-                    {post?.frontmatter?.description || 'Mô tả bài viết'}
-                  </p>
+                  {markdownify(post?.frontmatter?.description || 'Mô tả bài viết', 'p', 'text-gray-600 mb-4 line-clamp-3 text-sm md:text-base')}
                   {/* Read More Button */}
                   <Link
                     href={`/blogs/${post?.slug || '#'}`}

@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing Bền Vững: Xây Dựng Thương Hiệu Lâu Dài"
 description: "Tập trung vào nội dung giá trị, xây dựng cộng đồng trung thành và phát triển thương hiệu bền vững năm 2025."
-image: "/images/blog-10.jpg"
+image: "/images/blog-5.jpg"
 date: 2025-02-09T05:00:00Z
 draft: false
 category: "Content Marketing"

@@ -1,7 +1,7 @@
 ---
 title: "Video Content: Vua Của Marketing 2025"
 description: "Video ngắn, livestream và nội dung tương tác sẽ thống trị chiến lược content marketing năm 2025."
-image: "/images/blog-7.jpg"
+image: "/images/blog-2.jpg"
 date: 2025-02-03T05:00:00Z
 draft: false
 category: "Content Marketing"

@@ -2,6 +2,7 @@ import config from "../../../config/config.json";
 import PostSingle from "../../../layouts/PostSingle";
 import { getSinglePage } from "../../../lib/contentParser";
 import { notFound } from "next/navigation";
+import { parseMDX } from "../../../lib/utils/mdxParser";
 
 const { blog_folder } = config.settings;
 
@@ -19,6 +20,8 @@ const Article = async ({ params }) => {
     }
     
     const { frontmatter, content } = post;
+    // Parse markdown sang HTML
+    const mdxContent = await parseMDX(content);
 
     // Lấy related posts ở đây
     const relatedPosts = posts
@@ -29,7 +32,8 @@ const Article = async ({ params }) => {
       )
       .slice(0, 3);
 
-    return <PostSingle frontmatter={frontmatter} content={content} slug={single} relatedPosts={relatedPosts} />;
+    // Truyền mdxContent vào prop 'content' để PostSingle dùng đúng HTML đã parse
+    return <PostSingle frontmatter={frontmatter} content={mdxContent} slug={single} relatedPosts={relatedPosts} />;
   } catch (error) {
     console.error('Error loading post:', error);
     notFound();

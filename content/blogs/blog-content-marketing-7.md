@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing 2025: Tích Hợp AI & Tự Động Hóa"
 description: "Khám phá cách AI và automation thay đổi chiến lược content marketing, giúp cá nhân hóa và tối ưu hiệu quả năm 2025."
-image: "/images/blog-6.jpg"
+image: "/images/blog-1.jpg"
 date: 2025-02-01T05:00:00Z
 draft: false
 category: "Content Marketing"

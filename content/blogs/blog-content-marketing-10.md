@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing & Data: Quyết Định Dựa Trên Dữ Liệu"
 description: "Sử dụng dữ liệu lớn (Big Data) để tối ưu hóa nội dung, đo lường hiệu quả và tăng ROI năm 2025."
-image: "/images/blog-9.jpg"
+image: "/images/blog-4.jpg"
 date: 2025-02-07T05:00:00Z
 draft: false
 category: "Content Marketing"

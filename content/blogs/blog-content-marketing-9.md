@@ -1,7 +1,7 @@
 ---
 title: "Omnichannel Content: Trải Nghiệm Liền Mạch"
 description: "Tối ưu hóa nội dung đa kênh, cá nhân hóa trải nghiệm khách hàng trên mọi nền tảng năm 2025."
-image: "/images/blog-8.jpg"
+image: "/images/blog-3.jpg"
 date: 2025-02-05T05:00:00Z
 draft: false
 category: "Content Marketing"
