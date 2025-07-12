@@ -30,7 +30,7 @@ const BlogContent = ({ posts }) => {
       const matchesSearch = title.includes(safeSearchTerm) ||
         description.includes(safeSearchTerm) ||
         category.includes(safeSearchTerm);
-      const matchesCategory = selectedCategory === "Tất cả" || category === selectedCategory.toLowerCase();
+      const matchesCategory = selectedCategory === "Tất cả" || category === String(selectedCategory || '').toLowerCase();
       return matchesSearch && matchesCategory;
     });
   }, [posts, searchTerm, selectedCategory]);

@@ -16,8 +16,6 @@ const normalize = (str) => str ? removeAccents(str).toLowerCase().replace(/\s+/g
 
 const CategoryPage = async ({ params }) => {
   const categoryParam = decodeURIComponent(params.category);
-  // Luôn redirect về /page/1 để đồng bộ route động
-  redirect(`/blogs/category/${encodeURIComponent(categoryParam)}/page/1`);
   const posts = (await getSinglePage(`content/${blog_folder}`))
     .filter((post) => normalize(post.frontmatter.category) === normalize(categoryParam))
     .sort((post1, post2) =>

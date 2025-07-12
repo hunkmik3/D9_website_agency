@@ -8,9 +8,9 @@ import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import Pagination from "@components/Pagination";
 import removeAccents from "remove-accents";
 
-const normalize = (str) => str ? removeAccents(str).toLowerCase().replace(/\s+/g, "-") : "";
-
 const { blog_folder, pagination } = config.settings;
+
+const normalize = (str) => str ? removeAccents(str).toLowerCase().replace(/\s+/g, "-") : "";
 
 const CategoryPage = async ({ params }) => {
   const categoryParam = decodeURIComponent(params.category);
