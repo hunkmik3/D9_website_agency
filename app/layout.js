@@ -5,9 +5,10 @@ import Footer from "../layouts/partials/Footer";
 import Header from "../layouts/partials/Header";
 import Providers from "../layouts/partials/Providers";
 import BackToTop from "../layouts/components/BackToTop";
-import Analytics from "../layouts/components/Analytics";
+import { Analytics } from '@vercel/analytics/react';
 import servicesData from "../config/services.json";
 import CustomMDXProvider from "./helper/MDXProvider";
+import FloatingContactButtons from "../layouts/components/FloatingContactButtons";
 import "../styles/style.scss";
 
 export const metadata = {
@@ -125,6 +126,7 @@ export default function RootLayout({ children }) {
           <Providers>{children}</Providers>
         </CustomMDXProvider>
         <Footer />
+        <FloatingContactButtons />
         <BackToTop />
         <Analytics />
       </body>

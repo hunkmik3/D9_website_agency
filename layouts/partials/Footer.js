@@ -34,19 +34,29 @@ const Footer = () => {
           <div className="flex-1 flex flex-col items-center md:items-start mb-8 md:mb-0">
             <span className="font-bold text-lg mb-3 text-center md:text-left" style={{ color: '#1f2937' }}>LIÊN KẾT NHANH</span>
             <ul className="space-y-2 text-center md:text-left">
-              <li><Link href="/" className="text-[#1f2937] hover:text-[#1d4ed8]">Về Chúng Tôi</Link></li>
-              <li><Link href="/blog" className="text-[#1f2937] hover:text-[#1d4ed8]">Blog</Link></li>
-              <li><Link href="/portfolio" className="text-[#1f2937] hover:text-[#1d4ed8]">Dự Án Tiêu Biểu</Link></li>
-              <li><Link href="/contact" className="text-[#1f2937] hover:text-[#1d4ed8]">Liên Hệ</Link></li>
+              <li><Link href="/" className="text-[#1f2937] hover:text-[#1d4ed8]">Trang chủ</Link></li>
+              <li><Link href="/services" className="text-[#1f2937] hover:text-[#1d4ed8]">Dịch vụ</Link></li>
+              <li><Link href="/portfolio" className="text-[#1f2937] hover:text-[#1d4ed8]">Portfolio</Link></li>
+              <li><Link href="/blogs" className="text-[#1f2937] hover:text-[#1d4ed8]">Blog</Link></li>
+              <li><Link href="/contact" className="text-[#1f2937] hover:text-[#1d4ed8]">Liên hệ</Link></li>
             </ul>
           </div>
           {/* Kết nối mạng xã hội */}
           <div className="flex-1 flex flex-col items-center md:items-start">
             <span className="font-bold text-lg mb-3 text-center md:text-left" style={{ color: '#1f2937' }}>KẾT NỐI VỚI D9 AGENCY</span>
             <div className="flex gap-6 mb-4 justify-center md:justify-start">
-              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#1f2937] hover:text-[#1d4ed8] text-3xl"><i className="fab fa-facebook"></i></a>
-              <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-[#1f2937] hover:text-[#1d4ed8] text-3xl"><i className="fab fa-youtube"></i></a>
-              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[#1f2937] hover:text-[#1d4ed8] text-3xl"><i className="fab fa-linkedin"></i></a>
+              {/* Facebook */}
+              <a href="https://www.facebook.com/D9.mediaagency" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <Image src="/images/icon/facebook.png" alt="Facebook" width={28} height={28} />
+              </a>
+              {/* Zalo */}
+              <a href="https://zalo.me/0328896364" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+                <Image src="/images/icon/zalo.png" alt="Zalo" width={28} height={28} />
+              </a>
+              {/* Phone */}
+              <a href="tel:0328896364" aria-label="Điện thoại">
+                <Image src="/images/icon/phone.png" alt="Điện thoại" width={28} height={28} />
+              </a>
             </div>
           </div>
         </div>
