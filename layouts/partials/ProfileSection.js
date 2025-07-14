@@ -7,7 +7,7 @@ const ProfileSection = ({ profile_section }) => {
   const { title, description, video_url, button_label, button_link } = profile_section;
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white" data-aos="fade-up" data-aos-duration="1200">
       <div className="container">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">

@@ -205,7 +205,7 @@ const ServicesPage = () => (
         </p>
         <div className="space-y-20">
           {SERVICES.map((group, idx) => (
-            <section key={group.name} className="relative rounded-3xl shadow-xl bg-white/80 overflow-hidden mb-4">
+            <section key={group.name} className="relative rounded-3xl shadow-xl bg-white/80 overflow-hidden mb-4" data-aos="fade-up" data-aos-duration="1200">
               {/* Ảnh nền mờ phía sau tiêu đề nhóm */}
               {group.bg && (
                 <div className="absolute inset-0 opacity-10 pointer-events-none select-none">

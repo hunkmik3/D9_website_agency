@@ -83,8 +83,8 @@ const FeaturedProjects = ({ featured_projects }) => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="section py-10" data-aos="fade-up" data-aos-duration="1200">
+      <div className="container">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="font-primary font-bold text-primary text-h2-sm md:text-h2 leading-tight">
@@ -204,16 +204,10 @@ const FeaturedProjects = ({ featured_projects }) => {
           </Swiper>
         </div>
 
-        {/* CTA Button */}
-        <div className="text-center mt-16">
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-lg rounded-full hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
+        {/* Nút Xem tất cả dự án */}
+        <div className="flex justify-center mt-8">
+          <Link href="/projects" className="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold shadow hover:bg-blue-700 transition-all text-lg">
             Xem tất cả dự án
-            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
           </Link>
         </div>
       </div>

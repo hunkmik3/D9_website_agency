@@ -22,7 +22,7 @@ const testimonials = [
 ];
 
 const Testimonials = () => (
-  <section className="section bg-theme-light">
+  <section className="section bg-theme-light" data-aos="fade-up" data-aos-duration="1200">
     <div className="container">
       <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center uppercase">Khách Hàng Nói Gì Về D9 Media</h2>
       <div className="grid gap-8 md:grid-cols-3">

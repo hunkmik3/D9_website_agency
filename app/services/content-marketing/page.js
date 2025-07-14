@@ -10,7 +10,7 @@ export default function ContentMarketingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Banner */}
-      <section className="relative h-[60vh] bg-gradient-to-r from-blue-600 to-indigo-600">
+      <section className="relative h-[60vh] bg-gradient-to-r from-blue-600 to-indigo-600" data-aos="fade-up" data-aos-duration="1200">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
           <div className="max-w-4xl">
@@ -39,7 +39,7 @@ export default function ContentMarketingPage() {
       </section>
 
       {/* Navigation Tabs */}
-      <section className="border-b border-gray-200">
+      <section className="border-b border-gray-200" data-aos="fade-up" data-aos-duration="1200">
         <div className="container mx-auto px-4">
           <div className="flex space-x-8 overflow-x-auto">
             <button
@@ -87,7 +87,7 @@ export default function ContentMarketingPage() {
       </section>
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16" data-aos="fade-up" data-aos-duration="1200">
         {activeTab === 'overview' && (
           <div className="max-w-4xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">VỀ DỊCH VỤ CONTENT MARKETING</h2>
@@ -229,7 +229,7 @@ export default function ContentMarketingPage() {
       </div>
 
       {/* CTA Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-16" data-aos="fade-up" data-aos-duration="1200">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             SẴN SÀNG XÂY DỰNG CHIẾN LƯỢC CONTENT MARKETING?

@@ -54,24 +54,24 @@ new_services:
 feature: 
   title: Vì Sao Chọn D9 Media Agency?
   features:
-  - name: "Hiện Đại & Tối Ưu"
-    icon: "/images/code.svg"
-    content: "Thiết kế sáng tạo, phù hợp với xu hướng marketing hiện đại."
-  - name: "Tối Ưu Hiệu Suất"
-    icon: "/images/oop.svg"
-    content: "Chúng tôi cam kết tối ưu ROI trên từng chiến dịch chạy ads, SEO và truyền thông."
-  - name: "Hỗ Trợ 24/7"
-    icon: "/images/user-clock.svg"
-    content: "Đội ngũ kỹ thuật sẵn sàng hỗ trợ khách hàng mọi lúc, mọi nơi."
-  - name: "Chi Phí Hợp Lý"
-    icon: "/images/love.svg"
-    content: "Bảng giá minh bạch, linh hoạt theo quy mô và mục tiêu doanh nghiệp."
-  - name: "Giao Hàng Nhanh"
-    icon: "/images/speedometer.svg"
-    content: "Thời gian triển khai nhanh chóng, đảm bảo tiến độ marketing của bạn."
-  - name: "Giải Pháp Trên Mây"
+  - name: "Chiến lược bài bản"
+    icon: "/images/checkmark-circle.svg"
+    content: "Phân tích và lên chiến lược kĩ càng trước khi triển khai."
+  - name: "Dịch vụ toàn diện"
     icon: "/images/cloud.svg"
-    content: "Quản lý chiến dịch & báo cáo hiệu quả qua các nền tảng trực tuyến."
+    content: "Tối ưu hiệu quả đa nền tảng với mức chi phí hợp lý."
+  - name: "Đội ngũ chuyên gia thực chiến 10+ năm kinh nghiệm"
+    icon: "/images/user-clock.svg"
+    content: "Từng triển khai cho hơn 100+ thương hiệu lớn nhỏ."
+  - name: "Cam kết hiệu quả"
+    icon: "/images/speedometer.svg"
+    content: "Số liệu rõ ràng, đo lường cụ thể theo từng giai đoạn."
+  - name: "Đồng hành dài hạn"
+    icon: "/images/love.svg"
+    content: "Không chỉ làm dịch vụ, mà cùng phát triển bền vững."
+  - name: "Linh hoạt - Đúng tiến độ - Hỗ trợ 24/7"
+    icon: "/images/user-clock.svg"
+    content: "Luôn sẵn sàng hỗ trợ  – cả trong và sau chiến dịch."
 
 featured_projects:
   title: "DỰ ÁN NỔI BẬT"
@@ -124,12 +124,9 @@ call_to_action:
     link: "/contact"
 
 profile_section:
-  title: "GIẢI PHÁP D9 MEDIA AGENCY GIÚP DOANH NGHIỆP TĂNG TRƯỞNG X3"
+  title: "D9 MEDIA AGENCY – GIẢI PHÁP TĂNG TRƯỞNG X3 DOANH THU CHO DOANH NGHIỆP"
   description: |
-    D9 Media Agency tập trung cung cấp chiến lược chuyển đổi hiệu quả giúp doanh nghiệp tăng trưởng X3 doanh thu và phát triển bền vững
-
-    Thống kê trung bình các doanh nghiệp đã từng hợp tác với Ori:
-    Lượt tương tác tăng 48% sau 12 tháng triển khai, tỷ lệ chuyển đổi tăng 27%
+    D9 Media Agency cung cấp chiến lược chuyển đổi toàn diện, giúp doanh nghiệp tăng trưởng gấp 3 lần doanh thu và phát triển bền vững.
   video_url: "https://www.youtube.com/embed/LZSUcjBR2XQ?si=cW94yDa9VfBkchA2"
   button_label: "XEM PROFILE"
   button_link: "/portfolio"

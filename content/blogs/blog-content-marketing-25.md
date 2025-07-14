@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing & Web3: Tương Lai Phi Tập Trung 2025"
 description: "Khám phá cách content marketing thích ứng với Web3, blockchain và nền tảng phi tập trung để xây dựng cộng đồng sở hữu năm 2025."
-image: "/images/blog-4.jpg"
+image: "/images/blog-3.jpg"
 date: 2025-02-27T05:00:00Z
 draft: false
 category: "Content Marketing"

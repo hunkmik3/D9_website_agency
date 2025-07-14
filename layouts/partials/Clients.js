@@ -39,7 +39,7 @@ const Clients = ({ clients }) => {
   }
 
   return (
-    <section className="section py-10">
+    <section className="section py-10" data-aos="fade-up" data-aos-duration="1200">
       <div className="container">
         <h2 className="text-center text-2xl md:text-3xl font-bold text-primary mb-2 uppercase">
           {clients.title}

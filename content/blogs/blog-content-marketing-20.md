@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing & UGC: Sức Mạnh Người Dùng"
 description: "Nội dung do người dùng tạo (UGC) giúp tăng uy tín, lan tỏa thương hiệu và thúc đẩy chuyển đổi năm 2025."
-image: "/images/blog-9.jpg"
+image: "/images/blog-2.jpg"
 date: 2025-02-27T05:00:00Z
 draft: false
 category: "Content Marketing"

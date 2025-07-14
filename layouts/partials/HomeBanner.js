@@ -23,7 +23,7 @@ const HomeBanner = ({ banner }) => {
   }, [images.length]);
 
   return (
-    <section className="pt-0 pb-[50px]">
+    <section className="pt-0 pb-[50px]" data-aos="fade-up" data-aos-duration="1200">
       {/* Banner slider full width ở trên */}
       <div className="w-full px-0 overflow-hidden">
         {images && images.length > 0 ? (
@@ -88,7 +88,7 @@ const HomeBanner = ({ banner }) => {
         </div>
         )}
       </div>
-      <Marquee text="D9 Media Agency - Giải pháp truyền thông & quảng cáo toàn diện cho doanh nghiệp của bạn!" />
+      <Marquee text="D9 AGENCY DẪN DẮT CHIẾN LƯỢC -THỰC THI CHUYÊN NGHIỆP - PHÁT TRIỂN HIỆU QUẢ" speed={0.5} />
     </section>
   );
 };

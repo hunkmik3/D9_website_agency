@@ -1,7 +1,7 @@
 ---
 title: "Content Marketing & Interactive Content"
 description: "Nội dung tương tác (quiz, poll, AR/VR) giúp tăng engagement và trải nghiệm khách hàng năm 2025."
-image: "/images/blog-10.jpg"
+image: "/images/blog-1.jpg"
 date: 2025-03-01T05:00:00Z
 draft: false
 category: "Content Marketing"

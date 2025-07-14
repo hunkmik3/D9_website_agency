@@ -15,7 +15,7 @@ const HomeFeatures = ({ feature }) => {
     chunked.push(feature.features.slice(i, i + 4));
   }
   return (
-    <section className="section bg-theme-light">
+    <section className="section py-10" data-aos="fade-up" data-aos-duration="1200">
       <div className="container">
         <div className="text-center">
           <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold text-primary">

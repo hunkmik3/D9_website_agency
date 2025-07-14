@@ -10,6 +10,7 @@ import servicesData from "../config/services.json";
 import CustomMDXProvider from "./helper/MDXProvider";
 import FloatingContactButtons from "../layouts/components/FloatingContactButtons";
 import "../styles/style.scss";
+import AOSInit from "../layouts/components/AOSInit";
 
 export const metadata = {
   title: "D9 Media Agency - Digital Marketing & Web Development",
@@ -120,6 +121,7 @@ export default function RootLayout({ children }) {
         {/* Analytics scripts sẽ được load bởi Analytics component */}
       </head>
       <body suppressHydrationWarning={true}>
+        <AOSInit />
         <TwSizeIndicator />
         <Header services={servicesData} />
         <CustomMDXProvider>
