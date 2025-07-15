@@ -1,3 +1,12 @@
+// ... existing code ...
+// XÓA DÒNG SAU:
+// "use client";
+// import { useState } from "react";
+// ... existing code ...
+
+import ContactForm from "./ContactForm";
+import Image from "next/image";
+
 const PROJECTS = {
   "tam-minh-foods": {
     name: "TÂM MINH FOODS",
@@ -903,13 +912,11 @@ export default function ProjectDetailPage({ params }) {
     desc: "Thông tin dự án sẽ được cập nhật sớm."
   };
 
-  const [formStatus, setFormStatus] = useState({ loading: false, success: null, message: "" });
-
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-2 flex flex-col items-center">
       <div className="w-full max-w-3xl md:max-w-4xl flex flex-col items-center">
         <div className="w-full flex justify-center mb-6">
-          <img src={project.image} alt={project.name} className="w-full max-w-2xl h-80 object-contain bg-white rounded-2xl shadow" />
+          <Image src={project.image} alt={project.name} width={600} height={320} className="w-full max-w-2xl h-80 object-contain bg-white rounded-2xl shadow" />
         </div>
         <h1 className="text-2xl md:text-4xl font-extrabold text-center mb-4 text-blue-800 tracking-widest uppercase leading-tight drop-shadow">{project.name}</h1>
         <p className="text-base md:text-lg text-gray-700 text-center mb-6 font-medium max-w-2xl">{project.desc}</p>
@@ -975,55 +982,7 @@ export default function ProjectDetailPage({ params }) {
       {/* Form liên hệ ở cuối trang */}
       <div className="w-full max-w-2xl mx-auto mt-10 mb-4 bg-white rounded-2xl shadow-lg p-6 border border-blue-100">
         <h2 className="text-xl font-bold text-blue-700 mb-4 text-center uppercase tracking-wide">Liên hệ tư vấn dự án</h2>
-        <form className="space-y-4" onSubmit={async (e) => {
-          e.preventDefault();
-          setFormStatus({ loading: true, success: null, message: "" });
-          const form = e.target;
-          const data = {
-            name: form[0].value,
-            email: form[1].value,
-            phone: form[2].value,
-            message: form[3].value,
-            subject: `Liên hệ tư vấn dự án: ${project.name}`
-          };
-          try {
-            const res = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-            });
-            const result = await res.json();
-            if (res.ok) {
-              setFormStatus({ loading: false, success: true, message: result.message || 'Gửi liên hệ thành công!' });
-              form.reset();
-            } else {
-              setFormStatus({ loading: false, success: false, message: result.error || 'Gửi liên hệ thất bại!' });
-            }
-          } catch (err) {
-            setFormStatus({ loading: false, success: false, message: 'Có lỗi xảy ra, vui lòng thử lại sau!' });
-          }
-        }}>
-          {formStatus.loading && <div className="text-blue-600 font-semibold">Đang gửi...</div>}
-          {formStatus.success === true && <div className="text-green-600 font-semibold">{formStatus.message}</div>}
-          {formStatus.success === false && <div className="text-red-600 font-semibold">{formStatus.message}</div>}
-          <div>
-            <label className="block text-gray-700 font-semibold mb-1">Họ và tên</label>
-            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Nhập họ tên của bạn" />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold mb-1">Email</label>
-            <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Nhập email của bạn" />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold mb-1">Số điện thoại</label>
-            <input type="tel" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Nhập số điện thoại" />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold mb-1">Nội dung</label>
-            <textarea className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" rows={3} placeholder="Nhập nội dung liên hệ" />
-          </div>
-          <button type="submit" className="w-full py-2 bg-blue-600 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition-all text-base uppercase tracking-wide">Gửi liên hệ</button>
-        </form>
+        <ContactForm projectName={project.name} />
       </div>
     </div>
   );
