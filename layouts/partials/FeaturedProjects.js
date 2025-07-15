@@ -156,7 +156,7 @@ const FeaturedProjects = ({ featured_projects }) => {
           <Swiper
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
-            style={{ paddingBottom: 32, paddingLeft: 16, paddingRight: 16 }}
+            style={{ paddingBottom: 32 }}
           >
             {projectSlides.map((group, idx) => {
               // Chèn placeholder vào cuối từng hàng nếu thiếu
@@ -195,7 +195,7 @@ const FeaturedProjects = ({ featured_projects }) => {
               }
               return (
                 <SwiperSlide key={idx}>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-8">
                     {items}
                   </div>
                 </SwiperSlide>
