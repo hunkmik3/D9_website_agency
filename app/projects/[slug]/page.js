@@ -903,6 +903,8 @@ export default function ProjectDetailPage({ params }) {
     desc: "Thông tin dự án sẽ được cập nhật sớm."
   };
 
+  const [formStatus, setFormStatus] = useState({ loading: false, success: null, message: "" });
+
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-2 flex flex-col items-center">
       <div className="w-full max-w-3xl md:max-w-4xl flex flex-col items-center">
@@ -973,7 +975,37 @@ export default function ProjectDetailPage({ params }) {
       {/* Form liên hệ ở cuối trang */}
       <div className="w-full max-w-2xl mx-auto mt-10 mb-4 bg-white rounded-2xl shadow-lg p-6 border border-blue-100">
         <h2 className="text-xl font-bold text-blue-700 mb-4 text-center uppercase tracking-wide">Liên hệ tư vấn dự án</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={async (e) => {
+          e.preventDefault();
+          setFormStatus({ loading: true, success: null, message: "" });
+          const form = e.target;
+          const data = {
+            name: form[0].value,
+            email: form[1].value,
+            phone: form[2].value,
+            message: form[3].value,
+            subject: `Liên hệ tư vấn dự án: ${project.name}`
+          };
+          try {
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (res.ok) {
+              setFormStatus({ loading: false, success: true, message: result.message || 'Gửi liên hệ thành công!' });
+              form.reset();
+            } else {
+              setFormStatus({ loading: false, success: false, message: result.error || 'Gửi liên hệ thất bại!' });
+            }
+          } catch (err) {
+            setFormStatus({ loading: false, success: false, message: 'Có lỗi xảy ra, vui lòng thử lại sau!' });
+          }
+        }}>
+          {formStatus.loading && <div className="text-blue-600 font-semibold">Đang gửi...</div>}
+          {formStatus.success === true && <div className="text-green-600 font-semibold">{formStatus.message}</div>}
+          {formStatus.success === false && <div className="text-red-600 font-semibold">{formStatus.message}</div>}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Họ và tên</label>
             <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Nhập họ tên của bạn" />

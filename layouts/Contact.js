@@ -65,8 +65,39 @@ const Contact = ({ data }) => {
           <div className="col-12 md:col-6 lg:col-7">
             <form
               className="contact-form"
-              onSubmit={handleSubmit}
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setIsSubmitting(true);
+                setSubmitStatus(null);
+                const form = e.target;
+                const data = {
+                  name: form.name.value,
+                  email: form.email.value,
+                  phone: form.phone.value,
+                  subject: form.subject.value,
+                  message: form.message.value
+                };
+                try {
+                  const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  });
+                  const result = await res.json();
+                  if (res.ok) {
+                    setSubmitStatus({ type: 'success', message: result.message });
+                    form.reset();
+                  } else {
+                    setSubmitStatus({ type: 'error', message: result.error });
+                  }
+                } catch (err) {
+                  setSubmitStatus({ type: 'error', message: 'Có lỗi xảy ra, vui lòng thử lại sau' });
+                } finally {
+                  setIsSubmitting(false);
+                }
+              }}
             >
+              {isSubmitting && <div className="text-blue-600 font-semibold">Đang gửi...</div>}
               {submitStatus && (
                 <div className={`mb-4 p-4 rounded-lg ${
                   submitStatus.type === 'success' 

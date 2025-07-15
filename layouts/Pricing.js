@@ -99,6 +99,7 @@ function Consulting({ data }) {
 
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef(null);
+  const [formStatus, setFormStatus] = useState({ loading: false, success: null, message: "" });
 
   // Đóng popup khi click ra ngoài
   useEffect(() => {
@@ -272,7 +273,37 @@ function Consulting({ data }) {
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">ĐĂNG KÝ NHẬN TƯ VẤN</h2>
           <div className="bg-white rounded-lg p-8 shadow-xl">
-            <form className="grid md:grid-cols-2 gap-6">
+            <form className="grid md:grid-cols-2 gap-6" onSubmit={async (e) => {
+              e.preventDefault();
+              setFormStatus({ loading: true, success: null, message: "" });
+              const form = e.target;
+              const data = {
+                name: form[0].value,
+                phone: form[1].value,
+                email: form[2].value,
+                message: form[3].value,
+                subject: 'Đăng ký nhận tư vấn Pricing'
+              };
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (res.ok) {
+                  setFormStatus({ loading: false, success: true, message: result.message || 'Gửi liên hệ thành công!' });
+                  form.reset();
+                } else {
+                  setFormStatus({ loading: false, success: false, message: result.error || 'Gửi liên hệ thất bại!' });
+                }
+              } catch (err) {
+                setFormStatus({ loading: false, success: false, message: 'Có lỗi xảy ra, vui lòng thử lại sau!' });
+              }
+            }}>
+              {formStatus && formStatus.loading && <div className="text-blue-600 font-semibold">Đang gửi...</div>}
+              {formStatus && formStatus.success === true && <div className="text-green-600 font-semibold">{formStatus.message}</div>}
+              {formStatus && formStatus.success === false && <div className="text-red-600 font-semibold">{formStatus.message}</div>}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Họ tên*</label>
                 <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-700" placeholder="Nhập họ tên" required />

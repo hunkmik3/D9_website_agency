@@ -122,6 +122,22 @@ async function sendEmail(data) {
   return true;
 }
 
+// Thêm hàm gửi dữ liệu lên Google Sheet
+async function sendToGoogleSheet(data) {
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbxCwkoOCU8ODHH1Ei4ksoKE2QLmvYe9Fg7imtGV2XKvA-q266aYmVktCvBxEtVf4NU5/exec";
+  try {
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return await res.json();
+  } catch (err) {
+    console.error("Gửi dữ liệu lên Google Sheet thất bại:", err);
+    return null;
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -155,6 +171,9 @@ export async function POST(request) {
       }
     }
 
+    // Gửi dữ liệu lên Google Sheet
+    await sendToGoogleSheet({ name, email, phone, subject, message });
+
     // Log contact submission
     console.log('Contact form submission:', {
       name,
@@ -173,18 +192,6 @@ export async function POST(request) {
       console.error('Email sending failed:', emailError);
       // Don't fail the request if email fails, just log it
     }
-
-    // TODO: Save to database (optional)
-    // Example with MongoDB:
-    // const { MongoClient } = require('mongodb');
-    // const client = new MongoClient(process.env.MONGODB_URI);
-    // await client.connect();
-    // const db = client.db('d9media');
-    // await db.collection('contacts').insertOne({
-    //   name, email, subject, message, phone,
-    //   timestamp: new Date(),
-    //   ip: request.headers.get('x-forwarded-for')
-    // });
 
     return NextResponse.json(
       { 

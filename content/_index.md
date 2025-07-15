@@ -16,8 +16,11 @@ clients:
   description: "D9 Media Agency là đơn vị đồng hành cùng hàng trăm doanh nghiệp Việt Nam và Quốc Tế nhằm mở rộng quy mô, nâng cao giá trị thương hiệu"
   logos: [
     "viettel-construction.png", "toyota.png", "btmc.png", "cong.png", "dai-ichi-life.png", "facolos.png", "fpt.png", "lexus.png", "quan-nho.png", "thai-duong.png", "tien-tho-book.png", "all-about-hair.png",
-    "xuan-hoa.png", "3m.png", "getfly.png", "96seafood.png", "wabooks.png", "ninewest.png", "coquynhketoan.png", "30phut.png", "saomy.png", "adamo.png", "lipo.png", "manulife.png"
+    "xuan-hoa.png", "3m.png", "getfly.png", "96seafood.png", "wabooks.png", "ninewest.png", "coquynhketoan.png", "30phut.png", "saomy.png", "adamo.png", "lipo.png", "manulife.png",
+    "nic.png", "vnnic.png", "son-jaguar.png", "son-nanogold.png", "golden-gate.png", "quantum-films.png", "quad-films.png", "tofas.png", "wonder-kids.png", "quan-8.png", "tmas-vietnam.png", "pro-group.png"
   ]
+# Đường dẫn ảnh mẫu: /images/clients/[tên-file].png
+# Ví dụ: /images/clients/nic.png, /images/clients/vnnic.png, ...
 
 new_services:
   title: "DỊCH VỤ CỦA CHÚNG TÔI"
