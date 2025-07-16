@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export default function sitemap() {
-  const baseUrl = 'https://d9media.vn';
+  const baseUrl = 'https://www.d9agency.com';
 
   // Static pages
   const staticPages = [
