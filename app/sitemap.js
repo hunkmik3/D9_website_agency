@@ -1,6 +1,9 @@
+import fs from 'fs';
+import path from 'path';
+
 export default function sitemap() {
   const baseUrl = 'https://d9media.vn';
-  
+
   // Static pages
   const staticPages = [
     {
@@ -47,7 +50,7 @@ export default function sitemap() {
     },
   ];
 
-  // Service pages
+  // Service pages (giữ nguyên)
   const servicePages = [
     '/services/performance-branding',
     '/services/e-commerce',
@@ -62,5 +65,23 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages];
+  // Blog posts
+  let blogPages = [];
+  try {
+    const blogDir = path.join(process.cwd(), 'D9-media-agency-main', 'content', 'blogs');
+    const files = fs.readdirSync(blogDir);
+    blogPages = files.filter(f => f.endsWith('.md')).map(filename => {
+      const slug = filename.replace(/\.md$/, '');
+      return {
+        url: `${baseUrl}/blogs/${slug}`,
+        lastModified: new Date(), // Có thể parse ngày từ file nếu muốn chính xác hơn
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      };
+    });
+  } catch (e) {
+    // Nếu lỗi, bỏ qua
+  }
+
+  return [...staticPages, ...servicePages, ...blogPages];
 } 

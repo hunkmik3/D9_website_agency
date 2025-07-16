@@ -17,6 +17,8 @@ const Home = async () => {
   const { frontmatter } = homePage;
   const { banner, clients, new_services, feature, featured_projects, profile_section, call_to_action } = frontmatter;
   const { title } = config.site;
+  const description = banner?.content || config.metadata?.meta_description;
+  const image = Array.isArray(banner?.images) && banner.images.length > 0 ? banner.images[0] : config.metadata?.meta_image;
 
   // Lấy danh sách bài viết mới nhất
   let posts = [];
@@ -27,7 +29,7 @@ const Home = async () => {
 
   return (
     <>
-      <SeoMeta title={title} />
+      <SeoMeta title={title} description={description} image={image} />
 
       {/* Banner */}
       <HomeBanner banner={banner} />

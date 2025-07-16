@@ -25,6 +25,11 @@ const RegularPages = async ({ params }) => {
           image={image}
           noindex={noindex}
           canonical={canonical}
+          structuredData={layout === "faq" ? [{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [] // TODO: Có thể lấy danh sách câu hỏi từ content nếu muốn nâng cao
+          }] : undefined}
         />
         {layout === "404" ? (
           <NotFound data={regularPageData} />

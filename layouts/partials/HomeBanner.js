@@ -28,39 +28,44 @@ const HomeBanner = ({ banner }) => {
       <div className="w-full px-0 overflow-hidden">
         {images && images.length > 0 ? (
           <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-lg mx-auto">
-            {/* Test: Hiển thị ảnh đầu tiên cố định */}
+            {/* Hiển thị ảnh đầu tiên cố định */}
             <div className="absolute inset-0">
-              <img
+              <Image
                 src={images[0]}
                 alt="Banner 1"
+                fill
                 className="w-full h-full object-cover object-center"
+                sizes="100vw"
+                priority
                 onError={(e) => {
                   console.error("Image load error:", images[0], e);
                 }}
               />
             </div>
-            
-            {/* Test với placeholder image */}
+            {/* Placeholder image */}
             <div className="absolute inset-0 opacity-50">
-              <img
+              <Image
                 src="https://via.placeholder.com/800x450/0066cc/ffffff?text=Banner+Test"
                 alt="Placeholder"
+                fill
                 className="w-full h-full object-cover object-center"
+                sizes="100vw"
+                loading="lazy"
               />
             </div>
-            
             {/* Slider với fade effect */}
             {images.map((img, idx) => (
               <div
                 key={idx}
-                className={`absolute inset-0 transition-opacity duration-700 ${
-                  idx === currentImage ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`absolute inset-0 transition-opacity duration-700 ${idx === currentImage ? 'opacity-100' : 'opacity-0'}`}
               >
-                <img
+                <Image
                   src={img}
                   alt={`Banner ${idx + 1}`}
+                  fill
                   className="w-full h-full object-cover object-center"
+                  sizes="100vw"
+                  loading="lazy"
                   onError={(e) => {
                     console.error("Image load error:", img, e);
                   }}

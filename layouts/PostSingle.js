@@ -34,6 +34,61 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = `${title} - ${description}`;
 
+  // Schema Article
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": image,
+    "datePublished": date,
+    "author": {
+      "@type": "Organization",
+      "name": "D9 Media Agency"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "D9 Media Agency",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": typeof window !== 'undefined' ? window.location.href : ''
+    }
+  };
+
+  // Schema BreadcrumbList
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Trang chủ",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "/blogs"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": title,
+        "item": typeof window !== 'undefined' ? window.location.href : ''
+      }
+    ]
+  };
+
+  // Gộp schema
+  const structuredData = [articleSchema, breadcrumbSchema];
+
   const shareToFacebook = () => {
     if (typeof window !== 'undefined') {
       window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
@@ -72,7 +127,7 @@ const PostSingle = ({ frontmatter, content, slug, relatedPosts }) => {
 
   return (
     <>
-      <SeoMeta title={title} description={description} />
+      <SeoMeta title={title} description={description} structuredData={structuredData} />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">

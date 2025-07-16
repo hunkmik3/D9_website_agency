@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SeoMeta from "../../../layouts/SeoMeta";
 
 const SERVICE_DETAIL = {
   "seo-tong-the": {
@@ -593,8 +594,54 @@ export default function ServiceDetailPage({ params }) {
 
   const color = COLOR_MAP[slug] || COLOR_MAP["default"];
 
+  // Schema Service
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": serviceData.title,
+    "description": serviceData.subtitle,
+    "provider": {
+      "@type": "Organization",
+      "name": "D9 Media Agency",
+      "url": "https://d9media.vn"
+    },
+    "areaServed": "Việt Nam",
+    "serviceType": serviceData.title,
+    "image": serviceData.serviceImage,
+    "url": typeof window !== 'undefined' ? window.location.href : ''
+  };
+
+  // Schema BreadcrumbList
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Trang chủ",
+        "item": "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dịch vụ",
+        "item": "/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": serviceData.title,
+        "item": typeof window !== 'undefined' ? window.location.href : ''
+      }
+    ]
+  };
+
+  const structuredData = [serviceSchema, breadcrumbSchema];
+
   return (
     <div className="min-h-screen bg-white">
+      <SeoMeta title={serviceData.title} description={serviceData.subtitle} image={serviceData.serviceImage} structuredData={structuredData} />
       {/* Hero Banner */}
       <section className={`relative h-[60vh] bg-gradient-to-r ${color.from} ${color.to}`}>
         <div className="absolute inset-0 bg-black/20"></div>
