@@ -72,7 +72,7 @@ const FloatingContactButtons = () => {
           </span>
         </a>
         {/* Zalo */}
-        <a href="https://zalo.me/0328896364" target="_blank" rel="noopener noreferrer" aria-label="Zalo"
+        <a href="https://zalo.me/0354717576" target="_blank" rel="noopener noreferrer" aria-label="Zalo"
           style={pulseStyle}
           className="hover:scale-110">
           <span style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
@@ -80,7 +80,7 @@ const FloatingContactButtons = () => {
           </span>
         </a>
         {/* Phone */}
-        <a href="tel:0328896364" aria-label="Điện thoại"
+        <a href="tel:0354717576" aria-label="Điện thoại"
           style={pulseStyle}
           className="hover:scale-110">
           <span style={{display:'flex',alignItems:'center',justifyContent:'center'}}>

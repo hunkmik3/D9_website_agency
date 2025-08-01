@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="w-full" style={{ background: '#eff6ff', color: '#1f2937' }}>
         <div className="py-4 px-2 flex flex-col md:flex-row justify-center items-center text-sm">
           <div className="flex flex-wrap gap-x-8 gap-y-2 items-center justify-center">
-            <span className="inline-flex items-center"><svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>Số Điện Thoại: <b className="ml-1">096 588 87 13</b></span>
+            <span className="inline-flex items-center"><svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>Số Điện Thoại: <b className="ml-1">0354717576</b></span>
             <span className="inline-flex items-center"><svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 12H8m8 0a8 8 0 11-16 0 8 8 0 0116 0z" /></svg>Email: <b className="ml-1">info@d9agency.com</b></span>
             <span className="inline-flex items-center"><svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 12.414a2 2 0 00-2.828 0l-4.243 4.243A8 8 0 1116 8a8 8 0 01-1.343 8.657z" /></svg>Địa chỉ: <b className="ml-1">144 Khuất Duy Tiến, Thanh Xuân, Hà Nội</b></span>
           </div>
@@ -50,11 +50,11 @@ const Footer = () => {
                 <Image src="/images/icon/facebook.png" alt="Facebook" width={28} height={28} />
               </a>
               {/* Zalo */}
-              <a href="https://zalo.me/0328896364" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+              <a href="https://zalo.me/0354717576" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
                 <Image src="/images/icon/zalo.png" alt="Zalo" width={28} height={28} />
               </a>
               {/* Phone */}
-              <a href="tel:0328896364" aria-label="Điện thoại">
+              <a href="tel:0354717576" aria-label="Điện thoại">
                 <Image src="/images/icon/phone.png" alt="Điện thoại" width={28} height={28} />
               </a>
             </div>

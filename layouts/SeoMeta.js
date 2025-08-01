@@ -119,7 +119,7 @@ const SeoMeta = ({
             },
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+84-965-888-713",
+              "telephone": "+84-354-717-576",
               "contactType": "customer service",
               "email": "info@d9agency.com"
             },
