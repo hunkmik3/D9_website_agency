@@ -1,0 +1,30 @@
+{
+  "site": {
+    "title": "D9 Media Agency",
+    "base_url": "/",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_width": "120",
+    "logo_height": "48",
+    "logo_text": "D9 Media"
+  },
+
+  "settings": {
+    "pagination": 6,
+    "summary_length": 200,
+    "blog_folder": "blogs"
+  },
+
+  "params": {
+    "contact_form_action": "",
+    "tag_manager_id": "",
+    "footer_content": "Đồng hành cùng doanh nghiệp kiến tạo giải pháp số đột phá, nâng tầm thương hiệu và bứt phá doanh thu trong kỷ nguyên số.",
+    "copyright": "© 2024 D9 Media Agency. All rights reserved."
+  },
+
+  "metadata": {
+    "meta_author": "D9 Media Agency",
+    "meta_image": "/images/logo.png",
+    "meta_description": "Professional digital agency specializing in web development, design, and digital marketing solutions"
+  }
+}
